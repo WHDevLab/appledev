@@ -43,7 +43,8 @@ asc.downloadCertificate(certificatID='xxxxx', saveFolderPath='./'):
 
 #other api，for example list all bundleids
 #method: get or post
-asc.fetch(uri='/v1/bundleIds', method='get', post_data=None)
+res = asc.fetch(uri='/v1/bundleIds', method='get', post_data=None)
+print res
 
 ```
 
