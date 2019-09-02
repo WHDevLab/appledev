@@ -4,12 +4,7 @@ import gzip
 from datetime import datetime, timedelta
 import time
 import json
-from enum import Enum
 import base64
-class HttpMethod(Enum):
-	GET = 1
-	POST = 2
-	PATCH = 3
 
 ALGORITHM = 'ES256'
 BASE_API = "https://api.appstoreconnect.apple.com"
@@ -42,19 +37,19 @@ class AppStoreConnect:
 		                   headers={'kid': self.key_id, 'typ': 'JWT'}, algorithm=ALGORITHM).decode('ascii')
 
 			
-	def _api_call(self, uri, method=HttpMethod.GET, post_data=None):
+	def _api_call(self, uri, method="get", post_data=None):
 		headers = {"Authorization": "Bearer %s" % self.token}
 		if self._debug:
 			print(uri)
 		r = {}
 
 		url = BASE_API+uri
-		if method == HttpMethod.GET:
+		if method.lower() == "get":
 			r = requests.get(url, headers=headers)
-		elif method == HttpMethod.POST:
+		elif method.lower() == "post":
 			headers["Content-Type"] = "application/json"
 			r = requests.post(url=url, headers=headers, data=json.dumps(post_data))
-		elif method == HttpMethod.PATCH:
+		elif method.lower() == "patch":
 			headers["Content-Type"] = "application/json"
 			r = requests.patch(url=url, headers=headers, data=json.dumps(post_data))
 
@@ -81,10 +76,7 @@ class AppStoreConnect:
 		
 
 	def fetch(self, uri, method="get", post_data=None):
-		if method.lower() == "get":
-			return self._api_call(uri, HttpMethod.GET, post_data)
-		elif method.lower() == "post":
-			return self._api_call(uri, HttpMethod.POST, post_data)
+		return self._api_call(uri, method, post_data)
 		
 
 	def getProfiles(self):
@@ -95,7 +87,6 @@ class AppStoreConnect:
 		try:
 			r = self._api_call("/v1/profiles/"+profileID)
 			r = r.json()
-			print r
 			attributes = r["data"]["attributes"]
 			profileContent = attributes["profileContent"]
 			name = attributes["uuid"]
@@ -115,7 +106,6 @@ class AppStoreConnect:
 		try:
 			r = self._api_call("/v1/certificates/"+certificatID)
 			r = r.json()
-			print r
 			attributes = r["data"]["attributes"]
 			certificateContent = attributes["certificateContent"]
 			name = attributes["name"]
