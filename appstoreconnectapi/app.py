@@ -70,8 +70,6 @@ class AppStoreConnect:
 			data = gzip.decompress(data_gz)
 			return data.decode("utf-8")
 		else:
-			if not 200 <= r.status_code <= 299:
-				raise APIError("HTTP error [%d][%s]" % (r.status_code, r.content))
 			return r
 		
 
