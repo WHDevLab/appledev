@@ -24,7 +24,7 @@ class AppStoreConnect:
 	@property
 	def token(self):
 		# generate a new token every 15 minutes
-		if not self._token or self.token_gen_date + timedelta(minutes=15) > datetime.now():
+		if not self._token or self.token_gen_date + timedelta(minutes=15) < datetime.now():
 			self._token = self._generate_token()
 
 		return self._token
@@ -57,8 +57,6 @@ class AppStoreConnect:
 
 		if content_type == "application/json":
 			payload = r.json()
-			if 'errors' in payload:
-				raise APIError(payload.get('errors', [])[0].get('detail', 'Unknown error'))
 			return payload
 		elif content_type == 'application/a-gzip':
 			# TODO implement stream decompress
