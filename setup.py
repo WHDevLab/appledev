@@ -5,9 +5,9 @@ import io
 import os
 from setuptools import find_packages, setup
 
-NAME = 'appstoreconnectapi'
-DESCRIPTION = 'A Python wrapper around Apple AppStore Connect Api'
-URL = 'https://github.com/whdevlab/appstoreconnectapi'
+NAME = 'appledev'
+DESCRIPTION = 'Apple AppStore Connect Api'
+URL = 'https://github.com/whdevlab/appledev'
 EMAIL = 'whdevlab@163.com'
 AUTHOR = 'WHDevLab'
 VERSION = None
@@ -29,7 +29,7 @@ except FileNotFoundError:
 
 setup(
     name=NAME,
-    version='0.0.8',
+    version='0.0.1',
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',

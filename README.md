@@ -1,16 +1,11 @@
-App Store Connect Api
-====
-
-This is a Python wrapper around the **Apple App Store Api** : https://developer.apple.com/documentation/appstoreconnectapi
-
-So far, it handles token generation / expiration, methods for listing resources and downloading reports. 
+appledev
 
 Installation
 ------------
 
 The project is published on PyPI, install with: 
 
-    pip install appstoreconnectapi
+    pip install appledev
 
 Usage
 -----
@@ -20,7 +15,7 @@ Please follow instructions on [Apple documentation](https://developer.apple.com/
 With your *key ID*, *key file* and *issuer ID* create a new API instance:
 
 ```python
-from appstoreconnectapi import AppStoreConnect
+from appledev import AppStoreConnect
 asc = AppStoreConnect(key_id, path_to_key_file, issuer_id)
 ```
 

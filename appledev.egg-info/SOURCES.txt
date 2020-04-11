@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+appledev/__init__.py
+appledev/app.py
+appledev.egg-info/PKG-INFO
+appledev.egg-info/SOURCES.txt
+appledev.egg-info/dependency_links.txt
+appledev.egg-info/requires.txt
+appledev.egg-info/top_level.txt
